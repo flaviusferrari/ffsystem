@@ -1,0 +1,28 @@
+<div id="NavbarMenu">
+   <div id='NavbarMenuleft'>
+       <!- Insere os menus principais -->	
+      <ul id='nav'>
+	<li><a href='/ffsystem/principal.php'>Principal</a></li>
+	<li>
+	   <!-- Menu de Cadastro -->	
+	   <a href=#>Cadastros</a>
+	     <ul>
+			<!- Submenus do ítem Cadastro -->
+			<li><a href="<? echo $_SESSION['servidor']; ?>/cadastros/cadastropf.php">Cadastro PF</a></li>
+			<li><a href='<? echo $_SESSION['servidor']; ?>/cadastros/cadastropj.php'>Cadastro PJ</a></li>
+			<li><a href='<? echo $_SESSION['servidor']; ?>/cadastros/OrdemServico.php'>O.S.</a></li>
+	     </ul>
+	</li>
+	<li><a href="<? echo $_SESSION['servidor']; ?>/produtos/produtos.php">Produtos</a>
+	</li>
+        <!-- Menu Relatórios -->
+	<li><a href='#'>Relatórios</a>
+            <ul>
+                <li><a href="<? echo $_SESSION['servidor']; ?>/relatorios/Relat_test.php" target="relatorios">Relatório Teste</a></li>
+            </ul>
+	</li>
+	<li><a href='<? echo $_SESSION['servidor']; ?>/sair.php'>Sair</a>
+	</li>
+      </ul>
+   </div>
+</div>

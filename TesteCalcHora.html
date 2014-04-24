@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	
+	$(".teste").blur(function(){
+	
+	    txtHoraInicial = document.getElementById("txtHoraInicial");
+		txtHoraFinal = document.getElementById("txtHoraFinal");
+		
+		SegundosInicial = (txtHoraInicial.value.substr(0,2) * 3600);
+		SegundosInicial += (txtHoraInicial.value.substr(3,2) * 60);
+		
+		SegundosFinal = (txtHoraFinal.value.substr(0,2) * 3600);
+		SegundosFinal += (txtHoraFinal.value.substr(3,2) * 60);
+		
+		HorasTotal = parseInt((SegundosFinal - SegundosInicial)/3600);
+		MinutosTotal = parseInt(((SegundosFinal - SegundosInicial)%3600)/60);
+		
+		document.getElementById("txtHoraTotal").value = HorasTotal + ":" + MinutosTotal;
+		
+		if ((HorasTotal == 8) && (MinutosTotal > 0) || (HorasTotal >= 8)){
+			document.getElementById("txtHoraExtra").value = HorasTotal - 8 + ":" + MinutosTotal;
+		}else{
+			document.getElementById("txtHoraExtra").value = "00:00";
+		}
+	
+	});
+
+		});
+
+</script>
+<meta charset=utf-8 />
+<title>JS Bin</title>
+</head>
+<body>
+        Inicial: <input type="text" maxlength="5" id="txtHoraInicial"  /><br />
+        Final: <input type="text" maxlength="5" id="txtHoraFinal" class="teste"  /><br />
+        Total: <input type="text" maxlength="5" id="txtHoraTotal"  /><br />
+        Extra: <input type="text" maxlength="5" id="txtHoraExtra"  /><br>
+
+        
+        Inicial: <input type="text" maxlength="5" id="txtHoraInicial" /><br />
+        Final: <input type="text" maxlength="5" id="txtHoraFinal" class="teste"  /><br />
+        Total: <input type="text" maxlength="5" id="txtHoraTotal"  /><br />
+        Extra: <input type="text" maxlength="5" id="txtHoraExtra"  />
+</body>
+</html>

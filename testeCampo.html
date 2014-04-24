@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type:text/html; charset=iso-8859-1"/>
+		<meta charset="iso-8859-1"/>
+		<title>Somar Campos Automaticamente</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			body {
+				font-family: sans-serif;
+				font-size: .9em;
+			}
+			
+			form {
+				width: 226px;
+				margin: 40px auto;
+			}
+			
+			form fieldset {
+				border: 1px solid #DDD;
+				border-radius: 10px;
+				padding: 10px;
+			}
+			
+			fieldset legend {
+				padding: 2px 10px;
+				margin-left: 10px;
+				background: #333;
+				color: #FFF;
+				border-radius: 4px;
+			}
+			
+			fieldset label,
+			fieldset input,
+			fieldset select {
+				float: left;
+			}
+			
+			fieldset label {
+				line-height: 26px;
+				clear: left;
+				width: 120px;
+				text-align: right;
+			}
+			
+			fieldset input,
+			fieldset select {
+				margin: 0 0 10px 10px;
+				padding: 3px;
+				border: 1px solid #DDD;
+				border-radius: 3px;
+			}
+			
+			fieldset input {
+				width: 66px;
+			}
+			
+			fieldset select {
+				height: 24px;
+				width: 74px;
+			}
+			
+			fieldset button {
+				float: right;
+			}
+		</style>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				//Quando o valor do campo mudar...
+				$('.calc').change(function(){
+					var meals_num = parseFloat($('#meals_num').val()) || 0.0;
+					var meal_val = parseFloat($('#meal_val').val()) || 0.0;
+					var waiter_tip = parseFloat($('#waiter_tip').val()) || 0.0;
+					
+					//O total é o número de refeições x o valor da refeição
+					var total = meals_num * meal_val;
+					//Além disso, ainda tempos a gorjeta para o garçom
+					total += total * waiter_tip;
+					
+					$('#total_val').val(total);
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<form id="sum-form" method="post" action="">
+			<fieldset>
+				<legend>Valores</legend>
+				<label for="meals_num">Nº de Refeições</label>
+				<input type="text" id="meals_num" name="meals_num" class="calc"/>
+				<label for="meal_val">Valor da Refeição</label>
+				<input type="text" id="meal_val" name="meals_val" class="calc"/>
+				<label for="waiter_tip">Gorjeta Garçom</label>
+				<select id="waiter_tip" name="waiter_tip" class="calc">
+					<option value="0.1">10%</option>
+					<option value="0.15">15%</option>
+					<option value="0.18">18%</option>
+				</select>
+				<label for="total_val">Total</label>
+				<input type="text" id="total_val" name="total_val" class="result" readonly="readonly"/>
+				<button type="submit">Enviar</button>
+			</fieldset>
+		</form>
+	</body>
+</html>

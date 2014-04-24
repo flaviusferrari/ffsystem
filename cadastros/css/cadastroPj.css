@@ -1,0 +1,54 @@
+/* 
+    Document   : cadastroPj
+    Created on : 01/08/2013, 14:54:45
+    Author     : flavius
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#mask {
+  position:absolute;
+  left:0;
+  top:0;
+  z-index:9000;
+  background-color:#000;
+  display:none;
+}
+
+#boxes .window {
+    position:absolute;
+    width: 380px;
+    min-height:150px;
+    padding: 10px;
+    display:none;
+    z-index:9999;
+    padding:20px;
+    text-align: left;
+    border: 5px #999 solid;
+    border-radius: 4px;
+}
+
+/* Personalize a janela modal aqui. Você pode adicionar uma imagem de fundo. */
+#boxes #dialog {
+    width:375px;
+    height:160px; 
+    background-color: white;
+}
+#boxes #dialog2 {
+    width:375px;
+    height:160px; 
+    background-color: white;
+}
+/* posiciona o link para fechar a janela */
+.close {
+    position: absolute;
+    left: 90%;
+    top: 15px;
+    width: 20px;
+    text-align:right;
+    text-decoration: none;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 20px;
+}  
+

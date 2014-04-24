@@ -1,0 +1,25 @@
+#cxProdutos {
+    background-color: #CCC;
+    width: 380px;  
+    height: 440px;
+    position:relative;
+    left: 25%;
+    top:20px;
+    border: solid 1px thick red;
+    border-radius: 1em;
+    padding: 10px;
+    text-align: left;
+}            
+/* Responsável pelo texto dos campos de formulários*/
+.txtCampos {
+    font-size: 13px;
+    color: #666666;
+    font-family: Arial, Tahoma, Verdana;
+    font-weight: bold;
+}
+
+.tblProdutos {
+    width: 180px;
+    border: 10px solid #777;
+    padding: 5px;    
+}

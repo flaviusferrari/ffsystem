@@ -1,0 +1,107 @@
+.tabelamesagenda{
+    margin: 0 auto;
+}
+
+.tabelamesagenda thead tr td{
+    text-align: center;
+    font-size: 15px;
+    padding: 10px 0;
+    background: #F5F5F5;
+    border: 1px solid #E7E7E7;
+    color: #444;
+}
+
+.tabelamesagenda tbody tr td{
+    font-size: 15px;
+    padding: 10px;
+    background: #FFF;
+    border: 1px solid #DBDBDB;
+    color: #008AB3;font-weight: bold;
+    cursor:pointer;
+}
+
+.tabelamesagenda tbody tr td.hoje{
+    background: #0CF;
+}
+
+.tabelamesagenda tbody tr td:hover{
+    background: #008AB3;
+    color:#FFF;
+}
+
+.tabelamesagenda tbody tr td.semconteudo,.tabelamesagenda tbody tr td.semconteudo:hover{
+    border: 0;
+    background: none;
+    cursor:auto;
+}
+
+.tabelamesagenda tbody tr td span.numerotexto{
+    font-weight: normal;
+    display: block;
+    text-align: right;
+}
+
+.btn-controlemes{
+    font-size: 15px!important;
+    padding: 10px!important;
+    background: #EBEBEB!important;
+    color: #47565A!important;
+    cursor: pointer!important;
+}
+
+.btn-controlemes:hover{
+    background: #DBDBDB!important;
+}
+
+#mask {
+  position:absolute;
+  left:0;
+  top:0;
+  z-index:9000;
+  background-color:#000;
+  display:none;
+}
+
+.window {
+    position:absolute;
+    min-width: 200px;
+    max-height: 310px;
+    padding: 10px;
+    display:none;
+    z-index:9999;
+    padding:20px;
+    text-align: left;
+    border: 5px #999 solid;
+    border-radius: 4px;
+    background-color: white;
+    overflow: auto;
+}
+
+/* Personalize a janela modal aqui. Você pode adicionar uma imagem de fundo. */
+/*#dialog {
+    min-width: 250px;
+    min-height: 150px; 
+    background-color: white;
+}*/
+
+/* posiciona o link para fechar a janela */
+.close {
+/*    display: block;*/
+    position: absolute;
+    left: 90%;
+    top: 15px;
+    width: 20px;
+    text-align:right;
+    text-decoration: none;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 20px;
+}  
+
+.listaAgenda {
+    padding: 10px;
+    border: 1px #999 solid;
+    border-radius: 8px;
+    background: #CCC;
+}
+
