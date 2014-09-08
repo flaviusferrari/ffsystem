@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>FFSystem</title>
+
+        <!-- Importa os arquivos CSS -->
+        <link href="template/css/cssGeral.css" rel="stylesheet" type="text/css" />
+        <link href="template/css/MenuPrincipalCss.css" rel="stylesheet" type="text/css" />
+        <link href="template/css/{CSS}.css" rel="stylesheet" type="text/css" />
+        <link rel="shortcut icon" href="template/images/ffc.ico" >
+
+        <!-- Importa os arquivos JQuery -->
+        <script type="text/javascript" src="system/jquery/jquery.js"></script>
+        <script type="text/javascript" src="system/jquery/jquery-ui.js"></script>
+        <script type="text/javascript" src="system/jquery/maskedinput.js"></script>
+        <script type="text/javascript" src="system/jquery/geral.js"></script>
+        <script type="text/javascript" src="template/jquery/{JQUERY}.js"></script>
+   </head>
+<body>
+    <div id="tudo">
+        
+        <!-- HEADER -->
+        <div id="header">
+            
+            <!-- LOGO -->
+            <div class="logo">
+                <img src="template/images/logo.png" alt="HM Gestao">
+            </div>
+            
+            <!-- USUARIO -->
+            <div class="login">
+                <font class="txtBem">
+                Bem Vindo,</font>
+                <br>
+                <a href="index.php?sessao=dados_pessoais" title="Clique para exibir os dados" style="text-decoration: none; color: blueviolet;">
+                {USER}</a>
+            </div>
+            
+        </div>
+        
+        <!-- MENU -->
+        <div id="NavbarMenu">
+            {MENU}
+        </div>
+        
+        <!-- CONTEUDO -->  
+        <div id="conteudo">
+            {SISTEMA}
+        </div>
+        
+        <!-- RODAPE -->
+        <div id="footer">
+            <p align="center">
+                <font class="txtRodape">Desenvolvimento: FFC Technologies</font>
+            </p>
+        </div>
+    </div> <!-- Final Div Tudo -->
+</body>
+</html>

@@ -32,3 +32,13 @@
 2014-04-07 14:31:15 [] :: SELECT * FROM usuarios WHERE (Login = 'flavius')
 2014-04-07 14:32:44 [] :: SELECT * FROM usuarios WHERE (Login = 'admin')
 2014-04-07 15:42:01 [ffctechnologies] :: SELECT * FROM usuarios WHERE (Login = 'admin')
+2014-08-18 14:44:54 :: admin :: Usuario admin logou!!
+2014-08-18 14:48:47 ::  :: Usuario flavius logou!!
+2014-08-29 09:18:59 ::  :: Usuario admin logou!!
+2014-08-29 09:19:02 :: admin :: Usuario admin logou!!
+2014-08-29 09:19:03 :: admin :: Usuario admin logou!!
+2014-08-30 09:28:55 ::  :: Usuario flavius logou!!
+2014-08-30 09:29:23 :: flavius :: Usuario flavius logou!!
+2014-08-30 10:24:44 ::  :: Usuario flavius logou!!
+2014-08-30 10:26:51 ::  :: Usuario admin logou!!
+2014-08-30 10:42:39 ::  :: Usuario admin logou!!

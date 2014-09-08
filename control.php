@@ -1,63 +1,39 @@
-<?
-// Servidor absoluto
-$servidor = '/ffsystem';
+<?php
 
-// inclui o arquivo de conexão
-include "./bd/conexao.class.php";
+define('CONTROLLERS', 'app/controllers/');
+define('VIEWS', 'app/views/');
+define('MODELS', 'app/models');
+define('HELPERS', 'system/helpers');
+define('WIDGET', 'system/widget/');
+define('DATABASE', 'system/database/');
+define('BASEPATH', __DIR__);
 
-// recebe dados do Login
-$login = htmlspecialchars($_POST['usuario']);
-$senha = $_POST['senha'];
+require_once 'system/controller.php';
+require_once 'system/model.php';
+require_once 'system/loader.php';
 
-if ($login == "") 
+// Carrega as classes do sistema
+spl_autoload_register(array('TLoader', 'loader'));
+
+// Recebe o Controller
+$controller = $_POST['controller'];
+$action     = $_POST['action'];
+
+// Caminho do Controller
+$controller_path = CONTROLLERS . $controller . 'Controller.php';
+
+// Inclui o arquivo de Controller
+require_once ($controller_path);
+
+// Executa o controller
+$app = new $controller();
+$result = $app->$action();
+
+if($result)
 {
-    //se não existir lhe mando outra vez ao portal
-    $retorno = 'Nome do Usuário não pode ficar em branco!!';
-    
-    /* IMPRIME RETORNO */
-    echo $retorno;
+    echo $result;
 }
-elseif ($senha == '')
+else
 {
-    $retorno = 'Digite a senha';
-    
-    echo $retorno;
-} 
-else 
-{
-    // Instancia a Classe Conexao
-    $conexao = new Conexao;
-    
-    $senha = md5($_POST['senha']);
-
-    // Sql de consulta ao usuário
-    $sql = "SELECT * from usuarios WHERE Login = '{$login}' ";
-
-    // Efetua a consulta ao BD
-    $user = $conexao->consulta($sql);
-
-    //vemos se o usuário e senha são válidos
-    if ($user[0]['Login']== $login && $user[0]['Senha'] == $senha){
-        //usuario e senha válidos
-
-        setcookie('usuario', $login);
-        setcookie('servidor', $servidor);
-        setcookie('idUsuario', $user[0]['ID']);
-        setcookie('nomeUsuario', $user[0]['Nome']);
-        setcookie('idEmpresa', $user[0]['idEmpresa']);
-        setcookie('logado', 'SI');
-
-        return false;
-
-    }else {
-
-       $retorno  = 'Senha incorreta!<br>'."\n";
-       $retorno .= '<span><a href="lembrar_senha.php" title="Clique para recuperar a senha">Esqueci a senha</a></span>';
-       
-        /* IMPRIME RETORNO */
-        echo $retorno;
-    }
-}   
-
-
-?> 
+    return FALSE;
+}

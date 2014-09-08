@@ -1,0 +1,75 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 06/03/2014, 08:36:08
+    Author     : flavius
+*/
+
+body {
+    background-color: #d0d0d0;
+}
+
+@media print {
+    body {background-color: white;}
+}
+
+
+/*** DIV RELATÓRIO ****/
+.relatorio {
+    width: 608px;
+    height: 915px;
+    border: 1px solid #999;
+    background-color: white;
+    padding: 10px;    
+    display: table;
+}
+
+.relatorioHorizontal {
+    width: 928px;
+    height: 588px;
+    border: 1px solid #999;
+    background-color: white;
+    padding: 10px;    
+    display: table;
+}
+
+/**** TÍTULO DO RELATÓRIO ****/
+.ttRelatorio {
+    background-color: #ccc;
+    font-family: Courier New, Courier New, monospace;
+    font-size: 20px;
+    font-weight: bold;
+    padding-left: 10px;
+    margin-bottom: 20px;
+}
+
+/**** TÍTULO DAS COLUNAS ****/
+thead	{
+    font-style: italic;
+    font-family: Courier New, monospace;
+    border-left: 1px solid black;      
+    background-color: #d0d0d0;
+}
+thead th {
+  border: 2px solid black;   
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #999;
+}
+
+tbody td {
+    border: 1px solid black;
+    font-size: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+
+/**** TEXTO CENTRALIZADO ****/
+.center {
+    text-align: center;
+}
+

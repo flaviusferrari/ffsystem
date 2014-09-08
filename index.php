@@ -1,43 +1,38 @@
-<html>
-<head>
-<title>FFSystem - Sistema de Gestão de Empresas</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="./css/index.css" rel="stylesheet" type="text/css" />
-    <link href="./css/cssFormGeral.css" rel="stylesheet" type="texte/css" />
-    
-    <!-- Importa os arquivos JQuery -->
-    <script type="text/javascript" src="./scripts/jquery.js"></script>
-    <script type="text/javascript" src="./scripts/index.js"></script>
+<?php
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+define('_SYSEXEC', 1);
 
-</head>
-<body>
-    <div id="Autentica">
-        <div id="superior">
-            <img src="./layout/ffsystem.png" style="margin-top: 15px;">
-        </div>
-        <div id="logar">
-          <form method="POST" action="control.php">
-              <div>
-                  <label class="TituloRel">Nome de Usuário:</label>
-              </div>
-              <div>
-                   <input type="Text" name="usuario" id="usuario" maxlength="50" class="inpLogon">
-              </div>
-              <div style="margin-top: 20px;">
-                  <label class="TituloRel">Senha:</label>
-              </div>
-              <div>
-                  <input type="password" name="senha" id="senha" maxlength="50" class="inpLogon">
-              </div>
-              <div id="resposta" style="color: red;"></div>
-              <div style="margin-top: 10px;">
-                  <button type="button" id="entrar">Entrar</button>
-              </div>
-              <p align="center">
-                <span style="font-size: 12px; color: #666666;"><b><a href="changelog.html" target="new" class="link">Versão: 0.6.1</a></b></span>
-              </p>
-          </form>
-        </div>
-</div>
-</body>
-</html> 
+/*
+ *  Define as constantes de inicializaçao
+ */
+define('CONTROLLERS', 'app/controllers/');
+define('VIEWS', 'app/views/');
+define('MODELS', 'app/models');
+define('HELPERS', 'system/helpers');
+define('WIDGET', 'system/widget/');
+define('DATABASE', 'system/database/');
+define('BASEPATH', __DIR__);
+define('INCLUDER', BASEPATH . '/app/include');
+define('MODULES', 'app/modules/');
+
+require_once 'system/system.php';
+require_once 'system/controller.php';
+require_once 'system/model.php';
+require_once 'system/loader.php';
+
+// Carrega as classes do sistema
+spl_autoload_register(array('TLoader', 'loader'));
+
+
+
+// Inicia a aplicaçao
+$start = new System;
+// Verifica se o usuario esta logado
+$start->getLogado();
+$start->run();
+
+

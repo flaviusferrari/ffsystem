@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>FFC Sistemas</title>
+
+        <!-- Importa os arquivos CSS -->
+        <link href="template/css/cssGeral.css" rel="stylesheet" type="text/css" />
+        <link href="template/css/MenuPrincipalCss.css" rel="stylesheet" type="text/css" />
+        <link href="template/css/logon.css" rel="stylesheet" type="text/css" />
+        <link rel="shortcut icon" href="template/images/ffc.ico" >
+
+        <!-- Importa os arquivos JQuery -->
+        <script type="text/javascript" src="system/jquery/jquery.js"></script>
+        <script type="text/javascript" src="system/jquery/{JQUERY}.js"></script>
+        
+   </head>
+<body>
+    <div id="tudo">
+        <div id="Autentica">
+            <div id="superior">
+                <img src="template/images/logo.png" alt="Profer" style="margin-top: 15px;">
+            </div> 
+            <div id="logar"> 
+              <form method="POST" action="control.php">
+                  <div>
+                      <label class="TituloRel">Usuario:</label> 
+                  </div> 
+                  <div> 
+                       <input type="Text" name="usuario" id="usuario" maxlength="50" class="inpLogon"> 
+                  </div> 
+                  <div style="margin-top: 20px;"> 
+                      <label class="TituloRel">Senha:</label> 
+                   </div> 
+                   <div> 
+                       <input type="password" name="senha" id="senha" maxlength="50" class="inpLogon"> 
+                   </div>  
+                   <div id="resposta" style="color: red;"></div> 
+                   <div style="margin-top: 10px;"> 
+                       <button type="button" id="entrar">Entrar</button> 
+                   </div> 
+                   <p align="center"> 
+                     <span style="font-size: 12px; color: #666666;">
+                         <b>
+                             <a href="changelog" class="link">
+                                 Painel Versão: 0.1
+                             </a>
+                         </b>
+                     </span> 
+                   </p> 
+               </form> 
+             </div> 
+         </div> 
+    </div>
+</body>
+</html>
