@@ -5,26 +5,12 @@
     Description:
         Purpose of the stylesheet follows.
 */
-body {
-    margin:0;
-    padding:0;    
-    background:#999;
-}
-#tudo {
-    width: 760px;
-    margin:0 auto;         
-}
-#header {
-    width: 760px;
-    height: 100px;
-    margin-top: 10px;
-    background:#ccc;
-    border-top: 1px solid grey; 
-    border-left: 1px solid grey;
-    border-right: 1px solid grey;
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
-}
+body {margin:0;padding:0;background:#999;}
+
+    #tudo {width: 760px;margin:0 auto;}
+    
+#header {width: 760px;height: 100px;margin-top: 10px;background:#ccc;border-top: 1px solid grey;border-left: 1px solid grey;
+         border-right: 1px solid grey;border-top-left-radius: 25px;border-top-right-radius: 25px;}
     #msn {
         float: right;
         margin-top: 8px;
@@ -260,7 +246,6 @@ hr {
     border-radius:4px;
     -moz-border-radius:4px;
     -webkit-border-radius:4px;
-    background: #F0F5FF;
     border:1px solid #000000;
     font-weight: bold;
 }

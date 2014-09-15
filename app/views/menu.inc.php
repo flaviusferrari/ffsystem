@@ -7,7 +7,8 @@
        <a href=#>Cadastros</a>
          <ul>
             <!-- Submenus do ítem Cadastro -->
-            <li><a href="clientes">Clientes</a></li>
+            <li><a href="clientespf">Clientes PF</a></li>
+            <li><a href="clientespj">Clientes PJ</a></li>
             <li><a href='OrdemServico'>Ordem de Serviço</a></li>
          </ul>
     </li>

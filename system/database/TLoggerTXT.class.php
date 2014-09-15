@@ -16,7 +16,14 @@ class TLoggerTXT extends TLogger
         $time = date("Y-m-d H:i:s");
         
         // usuário
-        $user = $_COOKIE['usuario'];
+        if (isset($_COOKIE['usuario']))
+        {
+            $user = $_COOKIE['usuario'];
+        }
+        else
+        {
+            $user = '';
+        }
         
         
         // monta a string

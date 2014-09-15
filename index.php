@@ -18,11 +18,13 @@ define('DATABASE', 'system/database/');
 define('BASEPATH', __DIR__);
 define('INCLUDER', BASEPATH . '/app/include');
 define('MODULES', 'app/modules/');
+define('DIR', '/ffsystem/');
 
 require_once 'system/system.php';
 require_once 'system/controller.php';
 require_once 'system/model.php';
 require_once 'system/loader.php';
+require_once 'system/view.php';
 
 // Carrega as classes do sistema
 spl_autoload_register(array('TLoader', 'loader'));

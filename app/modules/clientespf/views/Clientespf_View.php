@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-class Clientespf_View 
+class Clientespf_View extends View
 {
     
     public function exibeView()
@@ -16,7 +16,7 @@ class Clientespf_View
         // Select Estado
         $uf = new Estado();
         
-        include MODULES .  'clientes/views/clientespf.phtml';
+        include MODULES .  'clientespf/views/clientespf.phtml';
         
         $result = ob_get_contents();
         ob_end_clean();   
