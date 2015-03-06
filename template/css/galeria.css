@@ -1,0 +1,27 @@
+/*css padrão */
+
+.gallery_demo{list-style:none;width:200px}
+.gallery_demo li{display:block;width:80px;height:80px;overflow:hidden;float:left;margin:0 10px 10px 0; list-style: none;}
+/*.gallery_demo li a{display:none}
+.gallery_demo li div{position:absolute;display:none;top:0;left:180px}
+.gallery_demo li div img{cursor:pointer}
+.gallery_demo li.active div img,.galleria li.active div{display:block}
+.gallery_demo li img.thumb{cursor:pointer;top:auto;left:auto;display:block;width:auto;height:auto}
+* html .galleria li div span{width:400px}  MSIE bug */
+
+span.caption{color:#fff; width: 700px; background-color: #000000; display: block; padding: 2px 0 2px 0;}
+
+
+ //css do layout 
+*{margin:0;padding:0}
+//h1,h2{font:bold 80% 'helvetica neue',sans-serif;letter-spacing:3px;text-transform:uppercase;}
+a{color:#0000CC;text-decoration:none;outline:none;}
+a:hover{color:#67a;}
+.demo{position:relative;margin-top:2em; float: none; width: 100%;}
+.gallery_demo{width:702px;margin:0 auto;}
+.gallery_demo li img{width:67px;height:50px;border:3px double #ccc;margin: 0 2px; list-style: none;cursor: pointer;}
+	
+#main_image{margin:0 auto 0 auto;height:498px;width:700px;}
+#main_image img{margin-bottom:10px;}
+
+//.nav{padding-bottom:5px;clear:both;font:9px 'helvetica neue',sans-serif;letter-spacing:3px;text-transform:uppercase;}

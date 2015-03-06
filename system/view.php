@@ -95,7 +95,7 @@ class View
         
         //define os parâmetros da classe
         $tags = array(
-                    'LIBRARIES' => $this->setLibraries($this->controller),
+                    'LIBRARIES' => $this->setLibraries(CONTROLL),
                     'USER' => $_COOKIE['nomeUsuario'],
                     'MENU' => $this->_menu,
                     'DIR' => DIR,

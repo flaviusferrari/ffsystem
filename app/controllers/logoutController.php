@@ -15,7 +15,7 @@ class Logout extends Controller
         setcookie('idUsuario');
         setcookie('idEmpresa');
         
-        header("Location: index");
+        header("Location: index.php");
     }    
    
 }

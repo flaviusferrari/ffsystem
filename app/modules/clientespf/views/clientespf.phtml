@@ -1,165 +1,175 @@
-<!-- BARRA DE TÍTULO -->
-<div id="barraTitulo">
-    <span class="legenda">Cadastro Pessoa Física</span>
-</div> 
+<div class="borda">
+    <!-- BARRA DE TÍTULO -->
+    <div  class="titulo2">
+        <span class="legenda">Cadastro Pessoa Física</span>
+    </div> 
 
+    <!-- BOTÕES -->
+    <div id="menuBotoes">
+        <a class="botao" id="btnSalvar">Salvar</a>
+        <a class="botao" id="btnNovo">Novo</a>
+        <a class="botao" id="btnAtualizar">Atualizar</a>
+        <a class="botao" id="btnLocalizar">Localizar</a>
+        <a class="botao" id="btnExcluir">Excluir</a>                    
+    </div>
 
-<div id="formPF"> 
-    <form id="formulario" name="formulario" method="post" action="cadastropf.php"> 
-        <div id="Form">
-            <span class="tableRowGroup">
-                <span class="TituloRel">Nome:</span>
-                <br>
-                <input name="nome" type="text" id="nome" style="width: 440px;">
-            </span>
-            <!-- Campo RG e CPF -->
-            <span class="tableBlock">
-                <span class="tableCell">
-                    <span class="TituloRel">CPF:</span>
+    <div class="padding"> 
+        <form id="formulario" name="formulario" method="post" action="<?=DIR ?>clientespf/salvar"> 
+            <div id="Form">
+                <span class="tableRowGroup">
+                    <span class="TituloRel">Nome:</span>
                     <br>
-                    <input id="cpf" name="cpf" type="text" style="width: 217px;">
+                    <input name="nome" type="text" id="nome" style="width: 440px;">
                 </span>
-                <span class="tableCell">
-                    <span class="TituloRel">RG:</span> 
-                    <br>
-                    <input name="rg" type="text" id="rg" style="width: 217px;">
-                </span>                                
-            </span>
-            <!-- Campos E-mail e Data de Nascimento -->
-            <span class="tableBlock">
-                <span class="tableCell">
-                    <span class="TituloRel">Email:</span>
-                    <br> 
-                    <input name="email" type="text" id="email" style="width: 220px">
+                <!-- Campo RG e CPF -->
+                <span class="tableBlock">
+                    <span class="tableCell">
+                        <span class="TituloRel">CPF:</span>
+                        <br>
+                        <input id="cpf" name="cpf" type="text" style="width: 217px;">
+                    </span>
+                    <span class="tableCell">
+                        <span class="TituloRel">RG:</span> 
+                        <br>
+                        <input name="rg" type="text" id="rg" style="width: 217px;">
+                    </span>                                
                 </span>
-                <!-- DATA DE NASCIMENTO -->
-                <span class="tableCell">
-                    <span class="TituloRel">Data de Nascimento:</span>
-                    <br>
-                   <!-- Select do dia -->
-                    <select name="dia" style="width: 50px">
-                       <?php
-                          // Inclui os dias do mes
-                          $dia = array('01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31') ;
+                <!-- Campos E-mail e Data de Nascimento -->
+                <span class="tableBlock">
+                    <span class="tableCell">
+                        <span class="TituloRel">Email:</span>
+                        <br> 
+                        <input name="email" type="text" id="email" style="width: 220px">
+                    </span>
+                    <!-- DATA DE NASCIMENTO -->
+                    <span class="tableCell">
+                        <span class="TituloRel">Data de Nascimento:</span>
+                        <br>
+                       <!-- Select do dia -->
+                        <select name="dia" style="width: 50px">
+                           <?php
+                              // Inclui os dias do mes
+                              $dia = array('01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31') ;
 
-                          // Mosta o Resultado
+                              // Mosta o Resultado
+                              $i = 0;
+                              while( $i < count($dia)){                                          
+                                  $n = $i + 1;
+                                    if($dia[$i] == $diaNiver)
+                                    { ?>
+                                       <option value="<?php echo $n; ?>" selected><?php echo $dia[$i]; ?></option> <?php echo "\n";
+                                    } else { ?>
+                                       <option value="<?php echo $n; ?>"><?php echo $dia[$i]; ?></option> <?php echo "\n";
+                                    }							   
+                                $i++;                                           
+                              } ?>
+                        </select>
+                        <select name="mes" style="width: 100px">
+                            <?php
+                            $mes = array('Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'); 
+
+                            // Mosta o Resultado
+                            $i = 0;
+                            while( $i < count($mes)){                                          
+                                $n = $i + 1;
+                            if($n == $mesNiver)
+                               { ?>
+                                    <option value="<?php echo $n; ?>" selected><?php echo $mes[$i]; ?></option> <?php echo "\n";
+                               } else { ?>
+                                    <option value="<?php echo $n; ?>"><?php echo $mes[$i]; ?></option> <?php echo "\n";
+                               }							   
+                               $i++;                                           
+                            } ?>
+                        </select>
+                        <!-- ANO -->
+                        <select name="ano" style="width: 60px">
+                            <?php
+                            $a = date('Y');
+
+                            for($i='1950'; $i<=$a; $i++)
+                            {
+                                $ano[] = $i;
+                            }
+
+                          // Mostra os Anos  
                           $i = 0;
-                          while( $i < count($dia)){                                          
-                              $n = $i + 1;
-                                if($dia[$i] == $diaNiver)
-                                { ?>
-                                   <option value="<?php echo $n; ?>" selected><?php echo $dia[$i]; ?></option> <?php echo "\n";
-                                } else { ?>
-                                   <option value="<?php echo $n; ?>"><?php echo $dia[$i]; ?></option> <?php echo "\n";
-                                }							   
-                            $i++;                                           
+                          while( $i < count($ano)){
+                              if($ano[$i] == $anoNiver) {
+                                  echo '<option value="' . $ano[$i] . '" selected>' . $ano[$i] . '</option>' . "\n";
+                              } else {
+                                  echo '<option value="' . $ano[$i] . '">' . $ano[$i] . '</option>' . "\n";
+                              }
+                             $i++;
                           } ?>
-                    </select>
-                    <select name="mes" style="width: 100px">
-                        <?php
-                        $mes = array('Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'); 
-
-                        // Mosta o Resultado
-                        $i = 0;
-                        while( $i < count($mes)){                                          
-                            $n = $i + 1;
-                        if($n == $mesNiver)
-                           { ?>
-                                <option value="<?php echo $n; ?>" selected><?php echo $mes[$i]; ?></option> <?php echo "\n";
-                           } else { ?>
-                                <option value="<?php echo $n; ?>"><?php echo $mes[$i]; ?></option> <?php echo "\n";
-                           }							   
-                           $i++;                                           
-                        } ?>
-                    </select>
-                    <!-- ANO -->
-                    <select name="ano" style="width: 60px">
-                        <?php
-                        $a = date('Y');
-
-                        for($i='1950'; $i<=$a; $i++)
-                        {
-                            $ano[] = $i;
-                        }
-
-                      // Mostra os Anos  
-                      $i = 0;
-                      while( $i < count($ano)){
-                          if($ano[$i] == $anoNiver) {
-                              echo '<option value="' . $ano[$i] . '" selected>' . $ano[$i] . '</option>' . "\n";
-                          } else {
-                              echo '<option value="' . $ano[$i] . '">' . $ano[$i] . '</option>' . "\n";
-                          }
-                         $i++;
-                      } ?>
-                    </select> 
+                        </select> 
+                    </span>
                 </span>
-            </span>
-            <!-- Campos Endereço, número e complemento -->
-            <span class="tableBlock">
-                <span class="tableCell">
-                    <span class="TituloRel">Endereço</span>
-                    <br> 
-                    <input name="endereco" type="text" id="endereco" style="width: 220px">
+                <!-- Campos Endereço, número e complemento -->
+                <span class="tableBlock">
+                    <span class="tableCell">
+                        <span class="TituloRel">Endereço</span>
+                        <br> 
+                        <input name="endereco" type="text" id="endereco" style="width: 220px">
+                    </span>
+                    <span class="tableCell">
+                        <span class="TituloRel">N&#186;:</span>
+                        <br>
+                        <input name="numero" type="text" id="numero" style="width: 60px">
+                    </span>
+                    <span class="tableCell">
+                        <span class="TituloRel">Complemento:</span>
+                        <br>
+                        <input name="complemento" type="text" id="complemento" style="width: 70px">
+                    </span>
+                    <span class="tableCell">
+                        <span class="TituloRel">Cep:</span>
+                        <br>
+                        <input id="cep" name="cep" type="text" style="width: 70px">
+                    </span>
                 </span>
-                <span class="tableCell">
-                    <span class="TituloRel">N&#186;:</span>
+                <!-- Campos Bairro, Cidade e Estado -->
+                <span class="tableBlock">
+                    <span class="tableCell">
+                        <span class="TituloRel">Bairro:</span>
+                        <br>
+                        <input name="bairro" type="text" id="bairro" style="width: 192px;">
+                    </span>
+                    <span class="tableCell">
+                        <span class="TituloRel">Cidade:</span>
+                        <br>
+                        <input name="cidade" type="text" id="cidade" style="width: 192px;">
+                    </span>
+                    <span class="tableCell">
+                        <span class="TituloRel">UF</span>
+                        <br> 
+                        <?php echo $uf->estado->show(); ?>
+                    </span>
+                </span>
+                <!-- Campos Telefone 1, Telefone 2 e Celular -->
+                <span class="tableBlock">
+                    <span class="tableCell">
+                        <span class="TituloRel">Telefone 01:</span>
+                        <br>
+                        <input type="text" id="telefone1" name="tel1" style="width: 143px">
+                    </span>
+                    <span class="tableCell">
+                        <span class="TituloRel">Telefone 02:</span>
+                        <br>
+                        <input type="text" id="telefone2" name="tel2" style="width: 143px">
+                    </span>
+                    <span class="tableCell">
+                        <span class="TituloRel">Celular:</span>
+                        <br>
+                        <input id="cel" name="cel" type="text" style="width: 143px" >
+                    </span>
+                </span>
+                <!-- Área de Texto -->
+                <span class="tableBlock">
+                    <span class="TituloRel">Observações:</span>
                     <br>
-                    <input name="numero" type="text" id="numero" style="width: 60px">
+                    <textarea class="msnBox" name="comentario" rows="5" style="width: 445px"></textarea>
                 </span>
-                <span class="tableCell">
-                    <span class="TituloRel">Complemento:</span>
-                    <br>
-                    <input name="complemento" type="text" id="complemento" style="width: 70px">
-                </span>
-                <span class="tableCell">
-                    <span class="TituloRel">Cep:</span>
-                    <br>
-                    <input id="cep" name="cep" type="text" style="width: 70px">
-                </span>
-            </span>
-            <!-- Campos Bairro, Cidade e Estado -->
-            <span class="tableBlock">
-                <span class="tableCell">
-                    <span class="TituloRel">Bairro:</span>
-                    <br>
-                    <input name="bairro" type="text" id="bairro" style="width: 192px;">
-                </span>
-                <span class="tableCell">
-                    <span class="TituloRel">Cidade:</span>
-                    <br>
-                    <input name="cidade" type="text" id="cidade" style="width: 192px;">
-                </span>
-                <span class="tableCell">
-                    <span class="TituloRel">UF</span>
-                    <br> 
-                    <?php echo $uf->estado->show(); ?>
-                </span>
-            </span>
-            <!-- Campos Telefone 1, Telefone 2 e Celular -->
-            <span class="tableBlock">
-                <span class="tableCell">
-                    <span class="TituloRel">Telefone 01:</span>
-                    <br>
-                    <input type="text" id="telefone1" name="tel1" style="width: 143px">
-                </span>
-                <span class="tableCell">
-                    <span class="TituloRel">Telefone 02:</span>
-                    <br>
-                    <input type="text" id="telefone2" name="tel2" style="width: 143px">
-                </span>
-                <span class="tableCell">
-                    <span class="TituloRel">Celular:</span>
-                    <br>
-                    <input id="cel" name="cel" type="text" style="width: 143px" >
-                </span>
-            </span>
-            <!-- Área de Texto -->
-            <span class="tableBlock">
-                <span class="TituloRel">Observações:</span>
-                <br>
-                <textarea class="msnBox" name="comentario" rows="5" style="width: 445px"></textarea>
-            </span>
-       </form> 	
+           </form> 	
+        </div>
     </div>
 </div>

@@ -1,0 +1,15 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 16/10/2014, 15:38:09
+    Author     : flavius
+*/
+
+.inputFile { width: 185px; height:20px; position: relative; overflow: hidden; } 
+.inputFile span { display: block; position: absolute; } 
+.inputFile input { position: absolute; right: 0; z-index: 2; font-size: 100px; 
+                  /* Aumenta tamanho do campo */ 
+                  opacity: 0; filter: alpha(opacity=0); }

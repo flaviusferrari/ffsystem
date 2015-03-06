@@ -65,15 +65,8 @@ body {margin:0;padding:0;background:#999;}
         border-top-right-radius: 25px;
         background-color: #739cad;
     }
-    #menuBotoes {
-        margin: 0 auto;
-        width: 470px;
-        /*float: left;*/
-        padding-top: 10px;
-        text-align: center;
-        border-left: 1px solid #333;
-        border-right: 1px solid #333;
-    }
+    #menuBotoes {margin: 0 auto;padding-top: 10px;text-align: center;}
+    
     #formPF {
         /*clear: both;*/
         margin: 0 auto;
@@ -240,15 +233,9 @@ hr {
     vertical-align: central;
 }
 
-/* Caixa de Mensagem */
-.msnBox {
-    resize: none;
-    border-radius:4px;
-    -moz-border-radius:4px;
-    -webkit-border-radius:4px;
-    border:1px solid #000000;
-    font-weight: bold;
-}
+/* Caixa de Texto */
+.msnBox {resize: none;}
+
 /* Mensagem de Aviso do Sistema */
 .msnAviso {
     text-align: center;
@@ -373,20 +360,19 @@ tbody td {
 /*****************************************************************************
 *************************  BOTÕES  *******************************************
 *****************************************************************************/
-.botao {
-    display: inline-block;
-    padding: 5px;
-    border: 3px solid #999;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: bold;
-    background-color: #CCC;
-    cursor: pointer;
-    outline: none;
-    /*display: table;*/
-}
+.botao {display: inline-block;padding: 4px 7px;border: 1px solid #999;border-radius: 5px;font-size: 12px;font-weight: bold;
+        background-color: #FFF;cursor: pointer;color: #333;}
 
-.botao:hover {
-    background-color: #999;
-    color: white;
-}
+.botao:hover {background-color: #999;color: white;}
+
+/** CAIXA DE MENSAGEM **/
+#mensagem {display: table;margin: 0 auto;min-width: 400px;}
+
+    .titulo_mess {background-color: #999;color: white;font-weight: bold;padding: 5px;border-top-left-radius: 10px;
+           border-top-right-radius: 10px;text-align: left;}
+    .campo_mess {position: relative;height: 180px;background-color: #ececec;border-bottom: 1px solid #807e7e;
+                 border-left: 1px solid #807e7e;border-right: 1px solid #807e7e;}
+    .ico_mess {position: absolute;left: 315px;top: 10px;}
+    .msn_mess {position: absolute;left: 10px;top: 55px;width: 370px;font: 16px monospace bold;}
+    .msn_alerta {position: absolute;left: 100px;top: 15px;font: 32px monospace bold;text-shadow: 2px 2px 2px #555;}
+    .btn_mess {position: absolute;left: 10px;top: 140px;text-decoration: none;color: #555;}

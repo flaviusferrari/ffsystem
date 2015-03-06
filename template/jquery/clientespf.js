@@ -7,11 +7,14 @@ $(document).ready(function() {
         $("#formulario").submit();
     });
     
-    /*
-     *  BOTÃO NOVO
-     */
+    /**** BOTÃO SALVAR ****/
+    $('#btnSalvar').click(function() {
+        $("#formulario").submit();
+    });
+    
+    /****  BOTÃO NOVO ****/
     $('#btnNovo').click(function() {
-        var novaURL = "cadastropf.php";
+        var novaURL = "/ffsystem/clientespf";
         $(window.document.location).attr('href',novaURL);  
     });
     
@@ -43,22 +46,10 @@ $(document).ready(function() {
     // jQuery Masked Input
     $("#telefone1").mask("(99)9999-9999"); 
     $("#telefone2").mask("(99)9999-9999"); 
-
+    $('#cel').mask('(99)9999-9999?9');
     $("#cep").mask("99999-999");                 
     $("#cpf").mask("999.999.999-99");
-
-    // Máscara para os telefones de São Paulo
-    $('#cel').focusout(function(){
-        var phone, element;
-        element = $(this);
-        element.unmask();
-        phone = element.val().replace(/\D/g, '');
-        if(phone.length > 10) {
-            element.mask("(99)99999-999?9");
-        } else {
-            element.mask("(99)9999-9999?9");
-        }
-    }).trigger('focusout');
+    
 });
 
 

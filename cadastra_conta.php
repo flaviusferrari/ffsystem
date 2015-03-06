@@ -31,10 +31,10 @@ function __autoload($classe)
 <body>
     <div id="tudo">
         <!-- CABEÇÁLHO DO SISTEMA -->
-        <? include ('./includes/cabecalho.php'); ?>
+        <?php include ('./includes/cabecalho.php'); ?>
         
         <!-- Menu do Sistema -->
-	<? include ("./includes/menu.inc.php");	?>
+	<?php include ("./app/views/menu.inc.php");	?>
 
 	<!-- CONTEÚDO DO SISTEMA -->
         <div id="conteudo"> 
@@ -142,7 +142,7 @@ function __autoload($classe)
         </div>
 
         <!-- Rodapé do Sistema -->
-	<? include ('./includes/rodape.php'); ?>
+	<?php include ('./includes/rodape.php'); ?>
         
     </div> <!-- Final Div Tudo -->
 </body>

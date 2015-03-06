@@ -49,13 +49,13 @@ $br = new TElement('br');
         <title>FFSystem - Sistema de Gestão de Empresas</title>
 
         <!-- Importa do arquivo JavaScript -->
-         <script type="text/javascript"  SRC="../scripts/formulario.js"></script>
+         <script type="text/javascript"  SRC="<?php echo $_SESSION['servidor']; ?>/scripts/formulario.js"></script>
          <script type="text/javascript" SRC="<?php echo $_SESSION['servidor']; ?>/scripts/jquery.js"></script>
-         <script type="text/javascript" src="../scripts/jquery-ui.js"></script>
+         <script type="text/javascript" src="<?php echo $_SESSION['servidor']; ?>/scripts/jquery-ui.js"></script>
          <script type="text/javascript" src="<?php echo $_SESSION['servidor']; ?>/scripts/maskedinput.js"></script>
          <script type="text/javascript" SRC="<?php echo $_SESSION['servidor']; ?>/scripts/Cadastropj.js"></script>
          <script type="text/javascript" SRC="<?php echo $_SESSION['servidor']; ?>/scripts/jqGeral.js"></script>
-         <script type="text/javascript" src="../scripts/jquery.superbox-min.js"></script>
+         <script type="text/javascript" src="<?php echo $_SESSION['servidor']; ?>/scripts/jquery.superbox-min.js"></script>
        
         <!-- Bloco da CSS -->
         <style type="text/css">               
@@ -68,10 +68,10 @@ $br = new TElement('br');
         </style>
 
         <!-- Inclui os scripts CSS -->
-        <link href="<?php echo $_SESSION['servidor']; ?>/css/MenuPrincipalCss.css" rel="stylesheet" type="text/css" />
-        <link href="<?php echo $_SESSION['servidor']; ?>/css/cssGeral.css" rel="stylesheet" type="text/css" />            
-        <link href="<?php echo $_SESSION['servidor']; ?>/css/cssFormGeral.css" rel="stylesheet" type="text/css" />
-        <link type="text/css" href="../layout/CSS/smoothness/jquery-ui-1.10.3.custom.css" rel="Stylesheet" />
+        <link href="<?php echo $_COOKIE['servidor']; ?>/css/MenuPrincipalCss.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo $_COOKIE['servidor']; ?>/css/cssGeral.css" rel="stylesheet" type="text/css" />            
+        <link href="<?php echo $_COOKIE['servidor']; ?>/css/cssFormGeral.css" rel="stylesheet" type="text/css" />
+        <link type="text/css" href="<?php echo $_SESSION['servidor']; ?>/layout/CSS/smoothness/jquery-ui-1.10.3.custom.css" rel="Stylesheet" />
         <link href="./css/cadastroPj.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="../scripts/jquery.superbox.css" type="text/css" media="all" />
     </head>	
@@ -81,7 +81,7 @@ $br = new TElement('br');
         <?php include ('../includes/cabecalho.php'); ?>
         
         <!-- Menu do Sistema -->
-	<?php include ("../includes/menu.inc.php"); ?>
+	<?php include ("../app/views/menu.inc.php"); ?>
 
 	<!-- CONTEÚDO DO SISTEMA -->
         <div id="conteudo"> <?php

@@ -20,25 +20,25 @@ $mensagem = new mensagens();
         
         <!-- Inclui os scripts CSS -->
         <link href="../layout/CSS/smoothness/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" type="text/css" />
-        <link href="<? echo $_SESSION['servidor']; ?>/css/MenuPrincipalCss.css" rel="stylesheet" type="text/css" />
-        <link href="<? echo $_SESSION['servidor']; ?>/css/cssGeral.css" rel="stylesheet" type="text/css" />            
-        <link href="<? echo $_SESSION['servidor']; ?>/css/cssFormGeral.css" rel="stylesheet" type="text/css" />
-        <link href="<? echo $_SESSION['servidor']; ?>/css/rltOrdem.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo $_SESSION['servidor']; ?>/css/MenuPrincipalCss.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo $_SESSION['servidor']; ?>/css/cssGeral.css" rel="stylesheet" type="text/css" />            
+        <link href="<?php echo $_SESSION['servidor']; ?>/css/cssFormGeral.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo $_SESSION['servidor']; ?>/css/rltOrdem.css" rel="stylesheet" type="text/css" />
 	
         <!-- Importa do arquivo JavaScript -->
-        <script language="javascript" SRC="<? echo $_SESSION['servidor']; ?>/scripts/jquery.js"></script>
+        <script language="javascript" SRC="<?php echo $_SESSION['servidor']; ?>/scripts/jquery.js"></script>
         <script type="text/javascript" src="../scripts/jquery-ui.js"></script>
-        <script language="javascript" src="<? echo $_SESSION['servidor']; ?>/scripts/maskedinput.js"></script>
-        <script language="javascript" SRC="<? echo $_SESSION['servidor']; ?>/scripts/rltOrdem.js"></script>
+        <script language="javascript" src="<?php echo $_SESSION['servidor']; ?>/scripts/maskedinput.js"></script>
+        <script language="javascript" SRC="<?php echo $_SESSION['servidor']; ?>/scripts/rltOrdem.js"></script>
         
     </head>
 <body>
     <div id="tudo">
         <!-- CABEÇÁLHO DO SISTEMA -->
-        <? include ('../includes/cabecalho.php'); ?>
+        <?php include ('../includes/cabecalho.php'); ?>
         
         <!-- Menu do Sistema -->
-	<? include ("../includes/menu.inc.php"); ?>
+	<?php include ("../app/views/menu.inc.php"); ?>
 
 	<!-- CONTEÚDO DO SISTEMA -->
         <div id="conteudo"> 
@@ -49,11 +49,11 @@ $mensagem = new mensagens();
             
             <div id="FormPF">
                 <div id="geral"> <?php
-            if ($_GET['tipo'] == 'periodo' or !$_GET)
+            if ($_GET['tipo'] == 'periodo' || !isset($_GET['tipo']))
             { ?>
                 <ul class="menu">
-                        <li class="on"><a href="<? echo $_SESSION['servidor']; ?>/relatorios/rltOrdem.php?tipo=periodo">Período</a></li>
-                        <li><a href="<? echo $_SESSION['servidor']; ?>/relatorios/rltOrdem.php?tipo=situacao">Situação</a></li>
+                        <li class="on"><a href="<?php echo $_SESSION['servidor']; ?>/relatorios/rltOrdem.php?tipo=periodo">Período</a></li>
+                        <li><a href="<?php echo $_SESSION['servidor']; ?>/relatorios/rltOrdem.php?tipo=situacao">Situação</a></li>
                     </ul>
                     <div id="conteudoAba">                     
                         <span class="tableBlock">
@@ -61,7 +61,7 @@ $mensagem = new mensagens();
                             <span class="tableCell" style="width: 120px;">
                                 <label class="txtCampos">Data Inicial:</label>
                                 <br> 
-                                <input name="idEmpresa" type="hidden" id="idEmpresa" value="<? echo $_COOKIE['idEmpresa']; ?>">
+                                <input name="idEmpresa" type="hidden" id="idEmpresa" value="<?php echo $_COOKIE['idEmpresa']; ?>">
                                 <input name="dataInicial" type="text" id="dataInicial" style="width: 100px">
                             </span>
                             <!-- DATA FINAL -->
@@ -84,8 +84,8 @@ $mensagem = new mensagens();
             else if ($_GET['tipo'] == 'situacao')
             { ?>
                 <ul class="menu">
-                        <li><a href="<? echo $_SESSION['servidor']; ?>/relatorios/rltOrdem.php?tipo=periodo">Período</a></li>
-                        <li class="on"><a href="<? echo $_SESSION['servidor']; ?>/relatorios/rltOrdem.php?tipo=situacao">Situação</a></li>
+                        <li><a href="<?php echo $_SESSION['servidor']; ?>/relatorios/rltOrdem.php?tipo=periodo">Período</a></li>
+                        <li class="on"><a href="<?php echo $_SESSION['servidor']; ?>/relatorios/rltOrdem.php?tipo=situacao">Situação</a></li>
                     </ul>
                     <div id="conteudoAba">                     
                         <span class="tableBlock">
@@ -93,7 +93,7 @@ $mensagem = new mensagens();
                             <span class="tableCell" style="width: 110px;">
                                 <label class="txtCampos">Data Inicial:</label>
                                 <br> 
-                                <input name="idEmpresa" type="hidden" id="idEmpresa" value="<? echo $_COOKIE['idEmpresa']; ?>">
+                                <input name="idEmpresa" type="hidden" id="idEmpresa" value="<?php echo $_COOKIE['idEmpresa']; ?>">
                                 <input name="dtInicialSituacao" type="text" id="dtInicialSituacao" style="width: 90px">
                             </span>
                             <!-- DATA FINAL -->
@@ -129,7 +129,7 @@ $mensagem = new mensagens();
         </div> 
 
         <!-- Rodapé do Sistema -->
-	<? include ('../includes/rodape.php'); ?>
+	<?php include ('../includes/rodape.php'); ?>
         
     </div> <!-- Final Div Tudo -->
      <div id="dialog-confirm"></div>

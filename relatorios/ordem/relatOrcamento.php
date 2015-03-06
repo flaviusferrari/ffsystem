@@ -94,7 +94,7 @@ $conexao = new Conexao;
         </style>
         <link href="../layout/CSS/FormularioCss.css" rel="stylesheet" type="text/css" />       
     </head> 
-    <body> <?
+    <body> <?php
         /**************************************
          ***  Exibe a Ordem de Serviço     ****
          **************************************/ 
@@ -111,13 +111,13 @@ $conexao = new Conexao;
         $idEmpresa = $consultaCodEmpresa[0]['idEmpresa'];
         
         // Cria a Consulta ao BD com o ID do cliente
-        $sqlOrdem = "SELECT * FROM ordem WHERE os = '{$ordem}' AND idEmpresa = '{$idEmpresa}'";
+        $sqlOrdem = "SELECT * FROM ordem WHERE os = '{$ordem}'";
 
         // Executa a consulta criada
         $LocalizaOrdem = $conexao->Consulta($sqlOrdem); 
 
         // Cria a Consulta ao BD com o ID do cliente
-        $sqlCliente = "SELECT * FROM clientes WHERE clientes.id_cliente = '{$LocalizaOrdem[0]['idCliente']}' AND clientes.idEmpresa = '{$idEmpresa}' ";
+        $sqlCliente = "SELECT * FROM clientes WHERE clientes.id_cliente = '{$LocalizaOrdem[0]['idCliente']}'";
 
         // Executa a consulta criada
         $LocalizaCliente = $conexao->Consulta($sqlCliente);
@@ -180,85 +180,86 @@ $conexao = new Conexao;
         $desconto    = $LocalizaOrdem[0]['desconto'];
         $custoServico  = $LocalizaOrdem[0]['custoServico'];
         $valorMaterial = $LocalizaOrdem[0]['valorMaterial'];
+        
         /****** Forma de Pagamento ******/
         // Acerta a Exibição da Forma de Pagamento vinda do Banco de Dados
-        $pagamento   = explode('~', $LocalizaOrdem[0]['fpagamento']);
-        // Verifica o tipo de pagamento
-        switch ($pagamento[0]) {
-            case 'avista':
-                $tipoPagamento = 'A vista';
-                break;
-            case 'depconta':
-                $tipoPagamento = 'Depósito em Conta';
-                break;
-            case 'bolbanc':
-                $tipoPagamento = 'Boleto Bancário';
-                break;
-            case 'deposito_e_boleto':
-                $tipoPagamento = 'Depósito em Conta + Boleto Bancário';
-                break;
-        }
-        // Verifica se possui Nota Fiscal
-        if ($LocalizaOrdem[0]['nota'] == 'S') {
-            $tipoPagamento .= ' com Nota Fiscal';
-        }
-        // Verifica as prestações
-        $prestacoes  = explode('-', $pagamento[1]);
-
-        // PRESTAÇÕES
-        for ($i=0;$i<count($prestacoes);$i++)
-        {
-            //$prestacoes .=  $_POST['prestacoes'][$i] . '-';
-            switch ($prestacoes[$i]) {
-                case 'A vista':
-                    $NPrestacoes .= 'A vista';
-                    break;
-                case '15dd':
-                    $NPrestacoes .= '15dd ';
-                    break;
-                case '20dd':
-                    $NPrestacoes .= '20dd ';
-                    break;
-                case '30dd':
-                    $NPrestacoes .= '30dd ';
-                    break;
-                case '45dd':
-                    $NPrestacoes .= '45dd ';
-                    break;
-                case '60dd':
-                    $NPrestacoes .= '60dd ';
-                    break;
-                case '90dd':
-                    $NPrestacoes .= '90dd ';
-                    break;
-            }
-        } 
-        $ventrada = $pagamento[2];
-        $vpresta  = $pagamento[3];
-        
-        // Formula a Frase
-        $fpagamento = $tipoPagamento;
-        if ($ventrada != '0') {
-            $fpagamento .= ' com Entrada de R$ '. $ventrada;
-        }
-        if ($vpresta != '0') {
-            $fpagamento .= '<br>';
-            $fpagamento .= 'Em Prestações de ' . $NPrestacoes;
-            $fpagamento .= '<br>';
-            $fpagamento .= 'No Valor de R$ ' . $vpresta;
-        } else {
-            if ($NPrestacoes != '') {
-                $fpagamento .= '<br>';
-                $fpagamento .= 'Para: ' . $NPrestacoes;
-            }
-        }      
-        $end_entrega = utf8_encode($LocalizaOrdem[0]['end_entrega']);        
+//        $pagamento   = explode('~', $LocalizaOrdem[0]['fpagamento']);
+//        // Verifica o tipo de pagamento
+//        switch ($pagamento[0]) {
+//            case 'avista':
+//                $tipoPagamento = 'A vista';
+//                break;
+//            case 'depconta':
+//                $tipoPagamento = 'Depósito em Conta';
+//                break;
+//            case 'bolbanc':
+//                $tipoPagamento = 'Boleto Bancário';
+//                break;
+//            case 'deposito_e_boleto':
+//                $tipoPagamento = 'Depósito em Conta + Boleto Bancário';
+//                break;
+//        }
+//        // Verifica se possui Nota Fiscal
+//        if ($LocalizaOrdem[0]['nota'] == 'S') {
+//            $tipoPagamento .= ' com Nota Fiscal';
+//        }
+//        // Verifica as prestações
+//        $prestacoes  = explode('-', $pagamento[1]);
+//
+//        // PRESTAÇÕES
+//        for ($i=0;$i<count($prestacoes);$i++)
+//        {
+//            //$prestacoes .=  $_POST['prestacoes'][$i] . '-';
+//            switch ($prestacoes[$i]) {
+//                case 'A vista':
+//                    $NPrestacoes .= 'A vista';
+//                    break;
+//                case '15dd':
+//                    $NPrestacoes .= '15dd ';
+//                    break;
+//                case '20dd':
+//                    $NPrestacoes .= '20dd ';
+//                    break;
+//                case '30dd':
+//                    $NPrestacoes .= '30dd ';
+//                    break;
+//                case '45dd':
+//                    $NPrestacoes .= '45dd ';
+//                    break;
+//                case '60dd':
+//                    $NPrestacoes .= '60dd ';
+//                    break;
+//                case '90dd':
+//                    $NPrestacoes .= '90dd ';
+//                    break;
+//            }
+//        } 
+//        $ventrada = $pagamento[2];
+//        $vpresta  = $pagamento[3];
+//        
+//        // Formula a Frase
+//        $fpagamento = $tipoPagamento;
+//        if ($ventrada != '0') {
+//            $fpagamento .= ' com Entrada de R$ '. $ventrada;
+//        }
+//        if ($vpresta != '0') {
+//            $fpagamento .= '<br>';
+//            $fpagamento .= 'Em Prestações de ' . $NPrestacoes;
+//            $fpagamento .= '<br>';
+//            $fpagamento .= 'No Valor de R$ ' . $vpresta;
+//        } else {
+//            if ($NPrestacoes != '') {
+//                $fpagamento .= '<br>';
+//                $fpagamento .= 'Para: ' . $NPrestacoes;
+//            }
+//        }      
+//        $end_entrega = utf8_encode($LocalizaOrdem[0]['end_entrega']);        
         ?>
         <!-- Formulário de Cadastro de OS -->        
         <table border="0" cellpading="0" cellspacing="0" align="center"  width="630px">
             <tr>
-                <td width="70" colspan="3" rowspan="2" align="center" style="border-top: 1px solid #000; border-left: 1px solid #000;"><img src="<? echo $_SESSION['servidor'] ?>/layout/logo.png"></td>
-                <td width="70" colspan="5" align="right" style="border-top: 1px solid #000; border-right: 1px solid #000;">Ordem de Serviço: <span style="font-size: 18px; color: red;"><? echo $numordem; ?></span>&nbsp;&nbsp;&nbsp;</td>
+                <td width="70" colspan="3" rowspan="2" align="center" style="border-top: 1px solid #000; border-left: 1px solid #000;"><img src="<?php echo $_SESSION['servidor'] ?>/layout/logo.png"></td>
+                <td width="70" colspan="5" align="right" style="border-top: 1px solid #000; border-right: 1px solid #000;">Ordem de Serviço: <span style="font-size: 18px; color: red;"><?php echo $numordem; ?></span>&nbsp;&nbsp;&nbsp;</td>
                
             </tr>
             <tr>
@@ -274,10 +275,10 @@ $conexao = new Conexao;
             <tr>                                                        
                 <td colspan="6" rowspan="2" class="tableborder">
                     <table border="0" width="100%">
-                        <tr><td colspan="4"><? echo $nome; ?></td></tr>
+                        <tr><td colspan="4"><?php echo $nome; ?></td></tr>
                         <tr>
-                            <td colspan="2" class="txtDadosCadastrais" ><? echo $endereco; ?>, <? echo $numero; ?> - <? echo $complemento; ?>
-                                <br><? echo $bairro; ?> &nbsp;-&nbsp; <? echo $cidade; ?> &nbsp;-&nbsp; <? echo $uf; ?></td>
+                            <td colspan="2" class="txtDadosCadastrais" ><?php echo $endereco; ?>, <?php echo $numero; ?> - <?php echo $complemento; ?>
+                                <br><?php echo $bairro; ?> &nbsp;-&nbsp; <?php echo $cidade; ?> &nbsp;-&nbsp; <?php echo $uf; ?></td>
                         </tr>                        
                     </table>
                 </td>          
@@ -285,22 +286,22 @@ $conexao = new Conexao;
                 <td width="70" colspan="2" valign="top" class="bordacima"><span class="TituloRel">Data:&nbsp;</span></td>                                                        
             </tr>   
             <tr>
-                <td colspan="2" align="center" class="bordabaixo"></span><? echo $data; ?>&nbsp;</td>
+                <td colspan="2" align="center" class="bordabaixo"></span><?php echo $data; ?>&nbsp;</td>
             </tr>                                            
             <!-- PROBLEMA -->
             <tr>
                 <td colspan="8" class="bordacima"><span class="TituloRel">Problema informado:</span></td>
             </tr>
             <tr>
-                <td colspan="8" class="campoProblema"><? echo nl2br($problema); ?>&nbsp;</td>          
+                <td colspan="8" class="campoProblema"><?php echo nl2br($problema); ?>&nbsp;</td>          
             </tr>
             <!-- SERVIÇO EXECUTADO -->
             <tr>
                 <td colspan="8" class="bordacima"><span class="TituloRel">Serviço Executado:</span></td>
             </tr>
             <tr>
-                <td colspan="8" class="campoServico"><? echo $servico; ?>&nbsp;</td>          
-            </tr> <?
+                <td colspan="8" class="campoServico"><?php echo $servico; ?>&nbsp;</td>          
+            </tr> <?php
             if($LocalizaOrdem[0]['material'] != '~~~') { ?>
                 <!-- Quantidade, Material e Custo -->
                 <tr>
@@ -318,7 +319,7 @@ $conexao = new Conexao;
                             </tr>
                         </thead>
                         <tbody>
-                            <? 
+                            <?php
                             // Convertendo o Material para Array
                             $materialLinha = explode("\n", $LocalizaOrdem[0]['material']);
 
@@ -332,25 +333,25 @@ $conexao = new Conexao;
                             while ($i < count($materialLinha)) { ?>
                                 <tr>                                    
                                     <td class="bordanumero" align="center">
-                                        <? echo $material[$i][0]; ?>
+                                        <?php echo $material[$i][0]; ?>
                                     </td>
                                     <td class="bordanumero">
-                                        <? echo utf8_encode($material[$i][1]); ?>
+                                        <?php echo utf8_encode($material[$i][1]); ?>
                                     </td>
                                     <td class="bordanumero" align="center">
-                                        <? echo $material[$i][2]; ?>
+                                        <?php echo $material[$i][2]; ?>
                                     </td>
                                     <td class="bordanumero" align="center">
-                                        <? echo $material[$i][3]; ?>
+                                        <?php echo $material[$i][3]; ?>
                                     </td>                                    
-                                </tr> <?
+                                </tr> <?php
                                 $i++;
                             } 
                               ?>
                         </tbody>
                     </table>                          
                 </td>
-                </tr> <?
+                </tr> <?php
             } ?>            
             <!-- TEMPO -->
             <tr>
@@ -359,9 +360,9 @@ $conexao = new Conexao;
                 <td colspan="2" class="bordacima"><span class="TituloRel">Tempo Total:</span></td>                
             </tr>
             <tr>
-                <td colspan="3" class="bordabaixo"><? echo $horaEntrada; ?>&nbsp;</td>
-                <td colspan="3" class="bordabaixo"><? echo $horaSaida; ?>&nbsp;</td>
-                <td colspan="2" class="bordabaixo"><? echo $tempoTotal; ?>&nbsp;</td>                
+                <td colspan="3" class="bordabaixo"><?php echo $horaEntrada; ?>&nbsp;</td>
+                <td colspan="3" class="bordabaixo"><?php echo $horaSaida; ?>&nbsp;</td>
+                <td colspan="2" class="bordabaixo"><?php echo $tempoTotal; ?>&nbsp;</td>                
             </tr>
             <!-- VALORES -->
             <tr>
@@ -371,30 +372,30 @@ $conexao = new Conexao;
                                 
             </tr>
             <tr>
-                <td colspan="3" class="bordabaixo">R$ <? echo $valorInicial; ?></td>
-                <td colspan="3" class="bordabaixo">R$ <? echo $valorExcedente; ?>&nbsp;</td>
-                <td colspan="2" class="bordabaixo">R$ <? echo $desconto; ?>&nbsp;</td>     
+                <td colspan="3" class="bordabaixo">R$ <?php echo $valorInicial; ?></td>
+                <td colspan="3" class="bordabaixo">R$ <?php echo $valorExcedente; ?>&nbsp;</td>
+                <td colspan="2" class="bordabaixo">R$ <?php echo $desconto; ?>&nbsp;</td>     
             </tr>            
             <!-- CUSTO DO SERVIÇO -->
-            <tr> <?
+            <tr> <?php
                 // Insere o campo para exibição do Custo do material
                 if($LocalizaOrdem[0]['material'] != '~~~') { ?>
                 <td colspan="5" class="bordacima"><span class="TituloRel">Valor do Material:</span></td>
-                    <?
+                    <?php
                 } else { ?>
-                    <td colspan="5" class="bordacima">&nbsp;</td> <?
+                    <td colspan="5" class="bordacima">&nbsp;</td> <?php
                 } ?>                
                 <td colspan="3" class="bordacima"><span class="TituloRel">Custo do Serviço:</span></td>
             </tr>
-            <tr> <?
+            <tr> <?php
                 // Insere o campo para exibição do Custo do material
                 if($LocalizaOrdem[0]['material'] != '~~~') { ?>
-                    <td colspan="5" class="bordabaixo"><?php echo $valorMaterial; ?></td> <?
+                    <td colspan="5" class="bordabaixo"><?php echo $valorMaterial; ?></td> <?php
                 } else { ?>
                     <td colspan="5" class="bordabaixo">&nbsp;</td>
-                     <?
+                     <?php
                 } ?>                
-                <td colspan="3" class="bordabaixo">R$ <? echo $custoServico; ?></td>
+                <td colspan="3" class="bordabaixo">R$ <?php echo $custoServico; ?></td>
             </tr>                       
             <tr>
                 <td colspan="8" class="campoAssinatura bordabaixo">

@@ -3,6 +3,7 @@
 <link href="<?=DIR ?>template/css/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
 <link href="<?=DIR ?>template/css/MenuPrincipalCss.css" rel="stylesheet" type="text/css" />
 <link href="<?=DIR ?>template/css/<?php echo $controller ?>.css" rel="stylesheet" type="text/css" />
+<?php if($controller == 'produtos') echo '<link rel="stylesheet" href="template/css/galeria.css" type="text/css" media="screen" /> ' ?>
 
 <!-- Importa os arquivos JQuery -->
 <script type="text/javascript" src="<?=DIR ?>system/jquery/jquery.js"></script>
@@ -10,3 +11,4 @@
 <script type="text/javascript" src="<?=DIR ?>system/jquery/maskedinput.js"></script>
 <script type="text/javascript" src="<?=DIR ?>system/jquery/geral.js"></script>
 <script type="text/javascript" src="<?=DIR ?>template/jquery/<?php echo $controller ?>.js"></script>
+<?php if($controller == 'produtos') echo '<script type="text/javascript" src="system/jquery/jquery.galleria.pack.js"></script>'; ?>

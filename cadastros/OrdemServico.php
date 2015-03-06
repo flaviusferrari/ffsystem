@@ -56,7 +56,7 @@ function ler_array_arquivo($file_name)
             <?php include ('../includes/cabecalho.php'); ?>
 
             <!-- Menu do Sistema -->
-            <?php include ("../includes/menu.inc.php"); ?>
+            <?php include ("../app/views/menu.inc.php"); ?>
             
             <!-- CONTEÚDO DO SISTEMA -->
             <div id="conteudo"> 
@@ -89,27 +89,47 @@ function ler_array_arquivo($file_name)
                     </div>
                     <div id="formPF">
                     <?php // Obtem os dados a serem pesquizados
-                    if (!$_POST["nome"]) {
-                        $nome = $_GET["nome"];
-                    } else {
+                    if (isset($_POST["nome"]))
+                    {
                         $nome = $_POST["nome"];
+                    } 
+                    elseif(isset ($_GET['nome']))
+                    {                        
+                        $nome = $_GET["nome"];
+                    }
+                    else
+                    {
+                        $nome = '';                    
                     }
 
                     $limite = 5; // limite de registros por pagina
                     $pag = 0; // valor padrao se nao for enviado nenhum valor via metodo GET
-                    $pag_atual = $_GET["pag_atual"]; // recebe o valor enviado pelo metodo GET
+                    
+                    // recebe o valor enviado pelo metodo GET
+                    if (!isset($_GET["pag_atual"]))
+                    {
+                        $pag_atual = 0;
+                    }
+                    else
+                    {
+                        $pag_atual = $_GET["pag_atual"];
+                    }
+                    
 
-                    if (!$pag_atual) {	
-                            $pag_atual = $pag;
-                    } else {
-                            $pag_atual = $pag_atual;
+                    if (!$pag_atual) 
+                    {	
+                        $pag_atual = $pag;
+                    } 
+                    else 
+                    {
+                        $pag_atual = $pag_atual;
                     }
 
                     // Cria a Consulta ao BD com o Nome
-                    $sql1 = "SELECT id_cliente, nome FROM clientes WHERE clientes.nome like'%{$nome}%' AND idEmpresa = '{$_COOKIE['idEmpresa']}'";
+                    $sql1 = "SELECT id_cliente, nome FROM clientes WHERE clientes.nome like'%{$nome}%'";
 
                     // Cria a Consulta ao BD com o Nome
-                    $sql = "SELECT * FROM clientes WHERE clientes.nome like'%{$nome}%' AND idEmpresa = '{$_COOKIE['idEmpresa']}' ORDER BY nome LIMIT $pag_atual, $limite";
+                    $sql = "SELECT * FROM clientes WHERE clientes.nome like'%{$nome}%' ORDER BY nome LIMIT $pag_atual, $limite";
 
                     // sql que pega o resultado total de registro
                     $resultado2 = $conexao->ConsultaDado($sql1);
@@ -168,7 +188,7 @@ function ler_array_arquivo($file_name)
                                     </td>
                                     <td align="right">
                                         <?php  // Verifica se o cliente possui alguma ordem de serviço cadastrada
-                                        $sqlConsultaOS = "SELECT * FROM ordem WHERE idCliente LIKE {$LocalizaCliente[$i]['id_cliente']} AND idEmpresa = '{$_COOKIE['idEmpresa']}'";
+                                        $sqlConsultaOS = "SELECT * FROM ordem WHERE idCliente LIKE {$LocalizaCliente[$i]['id_cliente']}";
                                         // Consulta se existe algum registro
                                         $resultConsulta = $conexao->ConsultaDado($sqlConsultaOS);
                                         // 
@@ -196,7 +216,7 @@ function ler_array_arquivo($file_name)
                         $idCliente = $_POST["idCliente"];
 
                         // Cria a Consulta ao BD com o ID do cliente
-                        $sqlCliente = "SELECT * FROM clientes WHERE clientes.id_cliente = '{$idCliente}' AND idEmpresa = '{$_COOKIE['idEmpresa']}'";
+                        $sqlCliente = "SELECT * FROM clientes WHERE clientes.id_cliente = '{$idCliente}' ";
 
                         // Executa a consulta criada
                         $LocalizaCliente = $conexao->Consulta($sqlCliente);
@@ -237,6 +257,12 @@ function ler_array_arquivo($file_name)
                         $data        = date('d/m/Y');
                         // Situação da Ordem
                         $aberta     = 'checked';
+                        $modificada = '';
+                        $fechada    = '';
+                        $problema   = '';
+                        $servico    = '';
+                        $tempoTotal = '';
+                        $obs        = '';
                         // Descrição
                         $valorInicial = '0';
                         $valorExcedente = '0';
@@ -249,13 +275,9 @@ function ler_array_arquivo($file_name)
                         // Obtem o dado a ser Pesquizado
                         $ordem = $_GET['ordem'];
                         // Cria a Consulta ao BD com o ID do cliente
-                        $sqlOrdem = "SELECT * FROM ordem WHERE os = '{$ordem}' AND idEmpresa = '{$_COOKIE['idEmpresa']}'";
+                        $sqlOrdem = "SELECT * FROM ordem WHERE os = '{$ordem}' ";
                         
-                        // Obtem o Código da Empresa
-                        $sqlCodEmpresa = "SELECT codEmpresa FROM empresa WHERE idEmpresa = '{$_COOKIE['idEmpresa']}'";
-                        $consultaCodEmpresa = $conexao->Consulta($sqlCodEmpresa);
-                        $codEmpresa = $consultaCodEmpresa[0]['codEmpresa'];
-
+                        
                         
                         // Executa a consulta criada
                         $LocalizaOrdem = $conexao->Consulta($sqlOrdem); 
@@ -304,12 +326,21 @@ function ler_array_arquivo($file_name)
                         $dataTemp    = explode('-', $LocalizaOrdem[0]['data']);
                         //armazena na variavel data os valores do vetor data e concatena /
                         $data = $dataTemp[2].'/'.$dataTemp[1].'/'.$dataTemp[0]; 
+                        
                         // Situação
-                        if ($LocalizaOrdem[0]['situacao'] == 'A') {
+                        $aberta     = '';
+                        $modificada = '';
+                        $fechada    = '';
+                        if ($LocalizaOrdem[0]['situacao'] == 'A') 
+                        {
                             $aberta = 'checked';
-                        } elseif ($LocalizaOrdem[0]['situacao'] == 'M') {
+                        } 
+                        elseif ($LocalizaOrdem[0]['situacao'] == 'M') 
+                        {
                             $modificada= 'checked';
-                        } elseif ($LocalizaOrdem[0]['situacao'] == 'F') {
+                        }
+                        elseif ($LocalizaOrdem[0]['situacao'] == 'F') 
+                        {
                             $fechada = 'checked';
                         }
                         // 
@@ -553,90 +584,79 @@ function ler_array_arquivo($file_name)
                     </div>
                 <?php // Finaliza a Verificação dos Get
                 } elseif ($_GET['acao'] == "salvar") {
-                    /**
-                     * Verifica se o usuário possui autorização para Excluir o Orçamento
-                     */
-                    if ($permissaoOrcamento[1] == '0') {
-                        $mess = 'Você não tem permissão para <span style="color: green">salvar</span> o Orçamento!';
-                        $mensagem->erro($mess, $_SESSION['servidor']);
+                    
+                    // Obtem os dados do fomulário
+                    $idCliente  = $_POST["idCliente"];
+                    $idEmpresa  = $_COOKIE['idEmpresa'];
 
-                        // Retorna para o Orçamento ?>
-                        <p align="center"><a href="./OrdemServico.php">
-                            <img src="<?php echo $_SESSION['servidor']; ?>/layout/btnVoltar.png"  onmouseout="this.src='<?php echo $_SESSION['servidor']; ?>/layout/btnVoltar.png';" onmouseover="this.src='<?php echo $_SESSION['servidor']; ?>/layout/btnVoltarActive.png';"></a>
-                        </p> <?php                                        
-                    } else {
-                        // Obtem os dados do fomulário
-                        $idCliente  = $_POST["idCliente"];
-                        $idEmpresa  = $_COOKIE['idEmpresa'];
-                        
-                        // Número da Ordem
-                        $sqlNumOrdem = "SELECT os FROM ordem WHERE idEmpresa = '{$idEmpresa}' ORDER BY os DESC LIMIT 1";
-                        $LocalizaNumOrdem = $conexao->Consulta($sqlNumOrdem);
-                        $ordem = $LocalizaNumOrdem[0]['os'] + 1;
-                        
-                        
-                        $data       = $_POST["data"];
-                        // Convertendo o formato de Data para o MYSQL
-                        $part = explode('/', $data);
-                        $newData = "{$part[2]}-{$part[1]}-{$part[0]}"; // YYYY-MM-DD
-                        // Verificando o Estado da Situação
-                        if ($_POST['situacao'] == "aberta") {
-                            $situacao = 'A';
-                        } elseif ($_POST['situacao'] == "modificada") {
-                            $situacao = "M";
-                        } elseif ($_POST['situacao']  == "fechada") {
-                            $situacao = "F";
-                        }  
-                        $problema   = utf8_decode($_POST['problema']);
-                        $servico    = utf8_decode($_POST['servico']);
-                        // Seleciona o material
-                        for($i=0; $i<= $_POST['quantidade']; $i++)
-                        {                                            
-                               $material[]    = $_POST['codProd'.$i] . '~' . $_POST['codigo'.$i] . '~' . utf8_decode($_POST['material'.$i]) . '~' . $_POST['valor'.$i] . '~' . $_POST['totalmat'.$i];
+                    // Número da Ordem
+                    $sqlNumOrdem = "SELECT os FROM ordem ORDER BY os DESC LIMIT 1";
+                    $LocalizaNumOrdem = $conexao->Consulta($sqlNumOrdem);
+                    $ordem = $LocalizaNumOrdem[0]['os'] + 1;
+
+
+                    $data       = $_POST["data"];
+                    // Convertendo o formato de Data para o MYSQL
+                    $part = explode('/', $data);
+                    $newData = "{$part[2]}-{$part[1]}-{$part[0]}"; // YYYY-MM-DD
+                    // Verificando o Estado da Situação
+                    if ($_POST['situacao'] == "aberta") {
+                        $situacao = 'A';
+                    } elseif ($_POST['situacao'] == "modificada") {
+                        $situacao = "M";
+                    } elseif ($_POST['situacao']  == "fechada") {
+                        $situacao = "F";
+                    }  
+                    $problema   = utf8_decode($_POST['problema']);
+                    $servico    = utf8_decode($_POST['servico']);
+                    // Seleciona o material
+                    for($i=0; $i<= $_POST['quantidade']; $i++)
+                    {                                            
+                           $material[]    = $_POST['codProd'.$i] . '~' . $_POST['codigo'.$i] . '~' . utf8_decode($_POST['material'.$i]) . '~' . $_POST['valor'.$i] . '~' . $_POST['totalmat'.$i];
+                    }
+                    // Convertendo o Material para String
+                    $materialSTR = implode("\n", $material);
+                    // Hora
+                    $horaEntrada = $_POST['horaEntrada'];
+                    $horaSaida   = $_POST['horaSaida'];
+                    $tempoTotal  = $_POST['tempoTotal'];
+                    // Valor
+                    $valorInicial = $_POST['valorInicial'];
+                    $valorExcedente = $_POST['valorExcedente'];
+                    $desconto     = $_POST['desconto'];
+                    $valorMaterial = $_POST['valorMaterial'];
+                    $valorServico = $_POST['valorServico'];
+                    $custoServico = $_POST['custoServico'];
+                    // Observações
+                    $obs          = $_POST['comentario'];
+
+                    // SQL de Gravação
+                    $sql = "INSERT INTO ordem (os, idCliente, data, situacao, problema, servico, material, horaEntrada, horaSaida, tempoTotal, valorInicial, valorExcedente, desconto, valorMaterial, valorServico, custoServico, obs)   " . 
+                            "VALUES ('{$ordem}', '{$idCliente}', '{$newData}', '{$situacao}', '{$problema}', '{$servico}', '{$materialSTR}', '{$horaEntrada}', '{$horaSaida}', '{$tempoTotal}', '{$valorInicial}', '{$valorExcedente}', '{$desconto}', '{$valorMaterial}', '{$valorServico}', '{$custoServico}', '{$obs}')";                                            
+
+                    // Salva a OS no Banco
+                    $GravaOrdem = $conexao->onSaveBD($sql);
+
+                    // Confirma se a ordem foi salva
+                    if ($GravaOrdem)
+                        {             
+                            // Verifica a numeração do Orçamento
+                            $sqlConsultaOrdem = "SELECT os FROM ordem ORDER BY os DESC LIMIT 1";
+
+                            // Executa a consulta criada
+                            $LocalizaUltimaOrdem = $conexao->Consulta($sqlConsultaOrdem);
+
+                            // Gera o alerta de Gravação
+                            $mess = 'Ordem <span style="color: blue;">'.$LocalizaUltimaOrdem[0]['os'].'</span> foi gravado com Sucesso!!!';
+
+                            // Mensagem de aviso		         
+                           $mensagem->acerto($mess, $_SESSION['servidor']); 
+                           ?>
+                           <p align="center"><a href="./OrdemServico.php?acao=visualizaordem&ordem=<?php echo $LocalizaUltimaOrdem[0]['os']; ?>">
+                                   <img src="<?php echo $_SESSION['servidor']; ?>/layout/btnVoltar.png"  onmouseout="this.src='<?php echo $_SESSION['servidor']; ?>/layout/btnVoltar.png';" onmouseover="this.src='<?php echo $_SESSION['servidor']; ?>/layout/btnVoltarActive.png';"></a>
+                           </p> <?php
                         }
-                        // Convertendo o Material para String
-                        $materialSTR = implode("\n", $material);
-                        // Hora
-                        $horaEntrada = $_POST['horaEntrada'];
-                        $horaSaida   = $_POST['horaSaida'];
-                        $tempoTotal  = $_POST['tempoTotal'];
-                        // Valor
-                        $valorInicial = $_POST['valorInicial'];
-                        $valorExcedente = $_POST['valorExcedente'];
-                        $desconto     = $_POST['desconto'];
-                        $valorMaterial = $_POST['valorMaterial'];
-                        $valorServico = $_POST['valorServico'];
-                        $custoServico = $_POST['custoServico'];
-                        // Observações
-                        $obs          = $_POST['comentario'];
-                        
-                        // SQL de Gravação
-                        $sql = "INSERT INTO ordem (idEmpresa, os, idCliente, data, situacao, problema, servico, material, horaEntrada, horaSaida, tempoTotal, valorInicial, valorExcedente, desconto, valorMaterial, valorServico, custoServico, obs)   " . 
-                                "VALUES ('{$idEmpresa}', '{$ordem}', '{$idCliente}', '{$newData}', '{$situacao}', '{$problema}', '{$servico}', '{$materialSTR}', '{$horaEntrada}', '{$horaSaida}', '{$tempoTotal}', '{$valorInicial}', '{$valorExcedente}', '{$desconto}', '{$valorMaterial}', '{$valorServico}', '{$custoServico}', '{$obs}')";                                            
-                                
-                        // Salva a OS no Banco
-                        $GravaOrdem = $conexao->onSaveBD($sql);
-                        
-                        // Confirma se a ordem foi salva
-                        if ($GravaOrdem)
-                            {             
-                                // Verifica a numeração do Orçamento
-                                $sqlConsultaOrdem = "SELECT os FROM ordem WHERE idEmpresa = '{$idEmpresa}' ORDER BY os DESC LIMIT 1";
-
-                                // Executa a consulta criada
-                                $LocalizaUltimaOrdem = $conexao->Consulta($sqlConsultaOrdem);
-                                
-                                // Gera o alerta de Gravação
-                                $mess = 'Ordem <span style="color: blue;">'.$LocalizaUltimaOrdem[0]['os'].'</span> foi gravado com Sucesso!!!';
-                                
-                                // Mensagem de aviso		         
-                               $mensagem->acerto($mess, $_SESSION['servidor']); 
-                               ?>
-                               <p align="center"><a href="./OrdemServico.php?acao=visualizaordem&ordem=<?php echo $LocalizaUltimaOrdem[0]['os']; ?>">
-                                       <img src="<?php echo $_SESSION['servidor']; ?>/layout/btnVoltar.png"  onmouseout="this.src='<?php echo $_SESSION['servidor']; ?>/layout/btnVoltar.png';" onmouseover="this.src='<?php echo $_SESSION['servidor']; ?>/layout/btnVoltarActive.png';"></a>
-                               </p> <?php
-                            }
-                    }                
+                                    
                 } elseif ($_GET['acao'] == "listaordem") {
                    /*****************************************
                     ****      Lista as OS Gravadas      *****
@@ -744,7 +764,7 @@ function ler_array_arquivo($file_name)
                         $sqlAtualiza = "UPDATE ordem SET  situacao = '{$situacao}', problema = '{$problema}', servico = '{$servico}', material = '{$materialSTR}', horaEntrada = '{$horaEntrada}',  " . 
                                 "                 horaSaida = '{$horaSaida}', tempoTotal = '{$tempoTotal}', valorInicial = '{$valorInicial}', valorExcedente = '{$valorExcedente}',         " .
                                 "                 desconto = '{$desconto}', valorMaterial = '{$valorMaterial}', valorServico = '{$valorServico}', custoServico = '{$custoServico}', obs = '{$obs}'  " .
-                                "                 WHERE os = '{$ordem}' AND idEmpresa = '{$_COOKIE['idEmpresa']}'                                                                                                                     ";
+                                "                 WHERE os = '{$ordem}'                                                                                                                     ";
                         
                         // Salva a OS no Banco
                         $AtualizaOrdem = $conexao->onSaveBD($sqlAtualiza);

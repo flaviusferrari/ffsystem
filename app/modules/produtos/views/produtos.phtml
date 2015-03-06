@@ -1,0 +1,74 @@
+<div class="borda">
+    
+    <!-- BARRA DE TÍTULO -->
+    <div class="titulo2">
+        <span class="legenda">
+            Cadastro de Produtos
+        </span>
+    </div>
+
+    <!-- BOTÕES -->
+    <div id="menuBotoes">
+        <a class="botao" id="btnSalvar">Salvar</a>
+        <a class="botao" id="btnNovo">Novo</a>
+        <a class="botao" id="btnAtualizar">Atualizar</a>
+        <a class="botao" id="btnLocalizar">Localizar</a>
+        <a class="botao" id="btnExcluir">Excluir</a>                    
+    </div>
+
+
+    <div class="padding">                    
+        <form id="formulario" name="formulario" action="" enctype="multipart/form-data" method="post" autocomplete="off">                                                            
+            <!-- CÓDIGO -->
+            <label class="txtCampos">Código:</label><br> 
+            <input name="codProduto" type="text" id="codProduto" style="width: 100px;" maxlength="15">
+            <br>
+            
+            <!-- NOME DO PRODUTO -->
+            <label class="txtCampos">Nome do Produto:</label><br>
+            <input name="nomeProduto" type="text" id="nomeProduto" style="width: 350px;" maxlength="100">
+            <br>
+            
+            <!-- DESCRIÇÃO -->
+            <label class="txtCampos">Descrição:</label><br>
+            <textarea class="msnBox" id="descriProduto" name="descriProduto" rows="3" style="width: 350px;"></textarea>
+            
+            <!-- VALOR, QUANTIDADE INICIAL E MÍNICA -->
+            <div class="tableBlock">
+                <!-- Valor -->
+                <span class="tableCell">
+                    <label class="txtCampos">Valor:</label>
+                    <br> 
+                    <label class="txtCampos">R$</label> <input name="valor" type="text" id="valor" class="moeda" size="8">
+                </span>
+                
+                <!-- Quantidade Inicial -->
+                <span class="tableCell">
+                    <label class="txtCampos">Quant. Inicial:</label>
+                    <br> 
+                    <input type="text" name="quant_ini" size="5" value="0">
+                </span>
+                
+                <!-- Quantidade Mínina -->
+                <span class="tableCell">
+                    <label class="txtCampos">Quant. Mínima:</label>
+                    <br>                     
+                    <input type="text"  size="5" value="0">
+                </span>
+            </div>
+            
+            <!-- FOTO -->
+            <label class="txtCampos">Foto:</label>
+            <br>
+            <div class="inputFile"> 
+                <span>Selecione um arquivo</span> 
+                <input type="file" name="foto" id="arquivo" /> 
+            </div>
+            
+            <!-- OBSERVAÇOES -->
+            <label class="txtCampos">Observações:</label><br>
+            <textarea name="comentario" rows="7" class="msnBox" style="width: 350px;"></textarea>                       
+        </form>
+    </div>
+    
+</div>
