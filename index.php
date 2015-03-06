@@ -36,7 +36,7 @@
               <p align="center">
                 <span style="font-size: 12px; color: #666666;"><b>
                         <a href="changelog.html" target="new" class="link">
-                            Versão: 0.7.12
+                            Versão: 0.7.1
                         </a></b></span>
               </p>
           </form>
