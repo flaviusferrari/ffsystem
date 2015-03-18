@@ -1,0 +1,30 @@
+<?php
+
+echo '<div id="Autentica">'."\n";
+echo '<div id="superior">'."\n";
+echo '<img src="template/images/logo.png" style="margin-top: 15px;">'."\n";
+        echo '</div>'."\n";
+        echo '<div id="logar">'."\n";
+          echo '<form method="POST" action="control.php">'."\n";
+              echo '<div>'."\n";
+                  echo '<label class="TituloRel">Nome de Usuário:</label>'."\n";
+              echo '</div>'."\n";
+              echo '<div>'."\n";
+                   echo '<input type="Text" name="usuario" id="usuario" maxlength="50" class="inpLogon">'."\n";
+              echo '</div>'."\n";
+              echo '<div style="margin-top: 20px;">'."\n";
+                  echo '<label class="TituloRel">Senha:</label>'."\n";
+              echo '</div>'."\n";
+              echo '<div>'."\n";
+                  echo '<input type="password" name="senha" id="senha" maxlength="50" class="inpLogon">'."\n";
+              echo '</div>'."\n"; 
+              echo '<div id="resposta" style="color: red;"></div>'."\n";
+              echo '<div style="margin-top: 10px;">'."\n";
+                  echo '<button type="button" id="entrar">Entrar</button>'."\n";
+              echo '</div>'."\n";
+              echo '<p align="center">'."\n";
+                echo '<span style="font-size: 12px; color: #666666;"><b><a href="changelog.html" target="new" class="link">Versão: 0.7.1</a></b></span>'."\n";
+              echo '</p>'."\n";
+          echo '</form>'."\n";
+        echo '</div>'."\n";
+echo '</div>'."\n";

@@ -49,7 +49,7 @@ $br = new TElement('br');
         <title>FFSystem - Sistema de Gestão de Empresas</title>
 
         <!-- Importa do arquivo JavaScript -->
-         <script type="text/javascript"  SRC="<?php echo $_SESSION['servidor']; ?>/scripts/formulario.js"></script>
+         <script type="text/javascript" SRC="<?php echo $_SESSION['servidor']; ?>/scripts/formulario.js"></script>
          <script type="text/javascript" SRC="<?php echo $_SESSION['servidor']; ?>/scripts/jquery.js"></script>
          <script type="text/javascript" src="<?php echo $_SESSION['servidor']; ?>/scripts/jquery-ui.js"></script>
          <script type="text/javascript" src="<?php echo $_SESSION['servidor']; ?>/scripts/maskedinput.js"></script>

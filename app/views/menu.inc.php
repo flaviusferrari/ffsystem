@@ -1,20 +1,20 @@
 <div id='NavbarMenuleft'>
    <!-- Insere os menus principais -->	
   <ul id='nav'>
-    <li><a href='<?php echo $_COOKIE['servidor']; ?>/Tpage.php?controller=index'>Principal</a></li>
+    <li><a href='Tpage.php?controller=index'>Principal</a></li>
     <li>
        <!-- Menu de Cadastro -->	
        <a href=#>Cadastros</a>
          <ul>
             <!-- Submenus do ítem Cadastro -->
-            <li><a href="<?php echo $_COOKIE['servidor']; ?>/Tpage.php?controller=clientespf">Clientes PF</a></li>
+            <li><a href="Tpage.php?controller=clientespf">Clientes PF</a></li>
             <li><a href="<?php echo $_COOKIE['servidor']; ?>/cadastros/cadastropj.php">Clientes PJ</a></li>
             <li><a href='<?php echo $_COOKIE['servidor']; ?>/cadastros/OrdemServico.php'>Ordem de Serviço</a></li>
          </ul>
     </li>
     <li><a href="#">Produtos</a>
         <ul>
-            <li><a href="<?php echo $_COOKIE['servidor']; ?>/Tpage.php?controller=produtos">Cadastro</a></li>                
+            <li><a href="Tpage.php?controller=produtos">Cadastro</a></li>                
         </ul>
     </li>
     <!-- Menu Financeiro -->
@@ -30,7 +30,7 @@
             <li><a href="<?php echo $_COOKIE['servidor']; ?>/relatorios/rltOrdem.php">Ordem de Serviço</a></li>
         </ul>
     </li>
-    <li><a href='<?php echo $_COOKIE['servidor']; ?>/Tpage.php?controller=logout'>Sair</a>
+    <li><a href='Tpage.php?controller=logout'>Sair</a>
     </li>
    </ul>
    <!-- Painel de Controle -->
